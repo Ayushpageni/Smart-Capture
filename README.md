@@ -1,145 +1,146 @@
 
-# 📷 Phone Camera Capture Utility
+# 🧠 Smart‑Capture by Ayush Pageni
 
-A cross-platform Python desktop app to capture, preview, and save images from:
+Smart‑Capture is a cross‑platform Python desktop application that lets you **preview**, **capture**, and **save images** from:
 
-- 🖥️ USB webcams (built-in or external)
+- 🖥️ USB webcams (built-in or external, including Android devices via USB)
 - 🌐 IP cameras (e.g. IP Webcam app on Android)
-- 🪟 Screen/window capture (software demos, emulators, etc.)
+- 🪟 Screen or window capture (ideal for demos, emulator streaming, etc.)
 
 ---
 
 ## ✨ Features
 
-- ✅ Live video preview (USB/IP/screen)
-- 🧠 Auto-detect USB cameras
-- 🌐 Connect to IP stream URLs (MJPEG or H.264)
-- 🪟 Select and capture any open window or full screen
-- 💾 Save captured frames as `.jpg` or `.png`
-- 📁 Browse and choose your output folder
-- 🖼 Flash animation on capture
-- 🧩 Modular, clean, and well-documented Python code
+- Live video preview from USB, IP, or screen sources  
+- Auto-detection of available USB camera devices  
+- Ability to input and connect to MJPEG/H.264 IP camera URLs  
+- Capture frames from any selected desktop window or full screen  
+- Save captured frames as `.jpg` or `.png` with optional filename  
+- Flash animation effect on capture  
+- Browse and set a custom save folder via GUI  
+- Clean, modular, and well-documented Python codebase
 
 ---
 
 ## 📦 Installation
 
-> ⚠️ Make sure Python 3.8+ is installed and added to PATH.
+> Requires **Python 3.8+**
 
-### 1. Clone or Download This Project
+1. **Clone the repository**
 
-```bash
-git clone https://github.com/yourusername/phone-camera-capture.git
-cd phone-camera-capture
-```
+   ```bash
+   git clone https://github.com/Ayushpageni/Smart-Capture.git
+   cd Smart-Capture
+   ```
 
-### 2. Install Dependencies
+2. **Install dependencies**
 
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### 🐧 Linux Users
+3. **On Linux systems**, you may need:
 
-You may need to install Tkinter manually:
-
-```bash
-sudo apt install python3-tk
-```
+   ```bash
+   sudo apt update
+   sudo apt install python3‑tk
+   ```
 
 ---
 
 ## 🧪 How to Run
 
-Once installed, simply execute:
-
 ```bash
-python flexicapture.py
+python app.py
 ```
 
-You’ll see a window with the following options:
-- Select **Camera Source** (USB, IP, Screen)
-- Click **Connect** to preview
-- Click **Capture** to grab a frame
-- Click **Save** to save the image
+This opens the GUI with options to:
+
+- Select **Camera Source** (USB / IP / Screen)
+- Click **Connect** to start live preview
+- Click **Capture** to freeze the current frame
+- Enter a filename (optional), then click **Save** to export the image
+
+Captured files go to `Captured_Images/` by default (changeable in-app).
 
 ---
 
 ## ⚙️ How It Works
 
-### 1. Select a Source
-- **USB Camera**: Select from detected USB video devices.
-- **IP Camera**: Enter an MJPEG stream URL (e.g. `http://192.168.1.101:8080/video`).
-- **Screen Capture**: Select any visible window or full screen.
+1. **Choose a Source**  
+   - **USB Camera**: pick from detected devices  
+   - **IP Camera**: enter stream URL (e.g., `http://192.168.1.100:8080/video`)  
+   - **Screen Capture**: select window or use full screen  
 
-### 2. Click "Connect"
-Live preview starts in the main video panel.
+2. **Click “Connect”** to start streaming (runs in a background thread)
 
-### 3. Capture & Save
-Click **Capture** → frame freezes → enter filename (optional) → click **Save** to store it in your chosen folder.
+3. **Click “Capture”** to freeze the frame (with a brief flash effect)
+
+4. **Click “Save”** to write the image to disk using your filename or timestamp
 
 ---
 
-## 🖥 Output Directory
+## 📁 Output Directory
 
-Captured images are saved in:
+By default, images are saved in:
 
 ```
 Captured_Images/
 ```
 
-You can change this by clicking **Browse Save Location** in the app.
+You can specify a different folder using the **Browse Save Location** button within the app.
 
 ---
 
 ## 💻 Platform Support
 
-| Platform | USB | IP | Screen Capture |
-|----------|-----|----|----------------|
-| Windows  | ✅  | ✅ | ✅ (via `pygetwindow`, `pyautogui`) |
-| macOS    | ✅  | ✅ | ✅ (via Quartz) |
-| Linux    | ✅  | ✅ | ✅ (full screen only by default) |
+| Platform | USB Camera | IP Camera | Screen Capture |
+|----------|------------|-----------|----------------|
+| Windows  | ✅         | ✅        | ✅ via `pygetwindow`, `pyautogui` |
+| macOS    | ✅         | ✅        | ✅ via Quartz/pyobjc |
+| Linux    | ✅         | ✅        | ✅ Full-screen only (window capture is limited) |
 
 ---
 
-## 🔌 Optional Modules for Screen Capture
+## 🔌 Optional Screen Capture Dependencies
 
-### Windows:
-```bash
-pip install pygetwindow pyautogui
-```
+- **Windows**:  
+  ```bash
+  pip install pygetwindow pyautogui
+  ```
 
-### macOS:
-```bash
-pip install pyobjc-framework-Quartz
-```
+- **macOS**:  
+  ```bash
+  pip install pyobjc-framework-Quartz
+  ```
 
-> These are optional. If not installed, the app falls back to full screen capture.
+These modules enable window-level capture. Without them, the app falls back to full-screen capture.
 
 ---
 
 ## 🙋 FAQ
 
-**Q: Can I use my Android phone camera?**  
-Yes. Use an app like **IP Webcam** on Android and enter the stream URL (e.g. `http://192.168.1.x:8080/video`).
+**Q: Can I capture from my Android phone camera?**  
+Yes — use an app like **IP Webcam** on your phone and input the live stream URL in the **IP Camera** mode (e.g., `http://192.168.x.x:8080/video`).
 
-**Q: The camera preview is black?**  
-Make sure:
-- The camera isn't being used by another app
-- You entered the correct IP stream
-- You selected the correct USB camera
+**Q: Why is the preview black or blank?**  
+- Ensure the camera or IP stream URL is correct  
+- Check your camera isn't used by another application  
+- Re-launch the app or try reconnecting
 
-**Q: Can I use this without a webcam?**  
-Yes! You can use either **IP Camera** or **Screen Capture** modes.
+**Q: Can I use the app without a webcam?**  
+Absolutely. You can use **IP Camera** mode or **Screen Capture** mode independently.
 
 ---
 
 ## 📜 License
 
-MIT License — Free for personal or commercial use.
+This project is licensed under the **MIT License** — free for personal or commercial use.
 
 ---
 
-## 👤 Author
+## 👤 Author & Contact
 
-Developed by **Ayush Pageni**
+**Ayush Pageni**  
+GitHub: [@Ayushpageni](https://github.com/Ayushpageni)  
+Feel free to open issues, submit feature requests, or reach out!
